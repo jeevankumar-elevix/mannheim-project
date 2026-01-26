@@ -37,33 +37,36 @@ export default function OurStory() {
                 {/* Right Side: Content */}
                 <div className="flex flex-col items-start text-left max-w-[600px]">
                     {/* Heading Image Container */}
-                    <div className="mb-6 ml-8 lg:ml-28">
+                    <div className="mb-8">
                         <Image
                             src="/headings/our-story.png"
                             alt="Our Story"
                             width={400}
                             height={60}
-                            className="h-[60px] w-auto object-contain"
+                            className="h-[50px] lg:h-[60px] w-auto object-contain"
                         />
                     </div>
 
                     {/* Subtitle Container */}
-                    <div className="mb-6 ml-8 lg:ml-10">
-                        <h3 className="text-2xl font-bold text-white leading-[1.4]">
-                            Crafted with Intention. Shared with Purpose.
+                    <div className="mb-6">
+                        <h3 className="text-xl lg:text-2xl font-medium text-white leading-[1.5] tracking-wide">
+                            At Mannheim Craft Brewery, brewing isn't just science — <span className="text-[#D4AF37] italic">it's soul.</span>
                         </h3>
-                    </div>
-
-                    <div className="space-y-6 text-white/85 text-base leading-[1.8]">
-                        <p>
-                            Because at <strong className="text-white font-bold">Mannheim Craft Brewery</strong>, we don’t just brew beer — we <strong className="text-white font-bold">craft purpose</strong>.
-                        </p>
-                        <p>
-                            Rooted in <strong className="text-white font-bold">German precision</strong> and driven by <strong className="text-white font-bold">Indian curiosity</strong>, our beers celebrate <strong className="text-white font-bold">quality, creativity, and community</strong>. From our flagship lagers to seasonal experiments, <strong className="text-white font-bold">every pour is brewed with intention</strong>. Because for us, it’s not just about what’s in the glass — it’s about who you share it with.
+                        <p className="text-lg text-white/90 mt-2 font-light">
+                            Every beer begins with intention and ends with connection.
                         </p>
                     </div>
 
-                    <button className="mt-8 px-8 py-3 border-2 border-white/20 text-white hover:bg-white hover:text-black text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-sm flex items-center gap-2 group">
+                    <div className="space-y-6 text-white/80 text-base leading-[1.8] font-light">
+                        <p>
+                            Rooted in <strong className="text-white font-medium">German precision</strong> yet inspired by <strong className="text-white font-medium">India's evolving palate</strong>, our beers are crafted with clarity, balance, and purpose. We don't chase trends — we chase <strong className="text-white font-medium">truth in taste</strong>.
+                        </p>
+                        <p>
+                            Every batch reflects honesty, craftsmanship, and creativity, honouring the discipline of traditional brewing while embracing the freedom of innovation. <span className="text-white block mt-2 font-normal">No shortcuts. No gimmicks. Just honest beer, made with patience and poured with pride.</span>
+                        </p>
+                    </div>
+
+                    <button className="mt-10 px-8 py-3 border border-white/30 text-white hover:bg-white hover:text-black text-xs lg:text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-sm flex items-center gap-3 group">
                         KNOW MORE
                         <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </button>
