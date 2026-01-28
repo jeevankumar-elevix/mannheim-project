@@ -39,11 +39,12 @@ export default function OurStory() {
                     {/* Heading Image Container */}
                     <div className="mb-8">
                         <Image
-                            src="/headings/our-story.png"
+                            src="/headings/our-story.png?v=2"
                             alt="Our Story"
                             width={400}
                             height={60}
-                            className="h-[50px] lg:h-[60px] w-auto object-contain"
+                            className="h-[50px] lg:h-[90px] w-auto object-contain"
+                            unoptimized
                         />
                     </div>
 

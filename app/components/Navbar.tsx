@@ -33,9 +33,12 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
+                  className="relative group px-1 py-2"
                 >
-                  {item.name}
+                  <span className="relative z-10 text-white/80 group-hover:text-[#EAB308] text-[13px] font-bold tracking-[0.15em] uppercase transition-colors duration-300">
+                    {item.name}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#EAB308] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ))}
             </div>

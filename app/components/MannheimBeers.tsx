@@ -29,11 +29,12 @@ export default function MannheimBeers() {
                     {/* Logo Container */}
                     <div className="mb-8">
                         <Image
-                            src="/headings/mannheim-beers.png"
+                            src="/headings/mannheim-beers.png?v=2"
                             alt="Mannheim Beers"
                             width={800}
                             height={120}
                             className="h-[50px] lg:h-[140px] w-auto object-contain mx-auto"
+                            unoptimized
                         />
                     </div>
 

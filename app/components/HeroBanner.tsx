@@ -9,8 +9,18 @@ import Image from 'next/image';
  */
 const bannerImages = [
     '/bannerimages/bannerimage1.png',
-    // '/bannerimages/bannerimage2.png',
-    // '/bannerimages/bannerimage3.png',
+    '/bannerimages/bannerimage2.png',
+    '/bannerimages/bannerimage3.png',
+];
+
+/**
+ * ADD YOUR BANNER CTAs HERE
+ * Each CTA corresponds to the banner image at the same index.
+ */
+const bannerCTAs = [
+    { text: 'Explore Our Beers', link: '#mannheim-beers' },
+    { text: 'Discover Coffee', link: '#mannheim-coffee' },
+    { text: 'Visit Us Today', link: '#contact' },
 ];
 
 export default function HeroBanner() {
@@ -51,6 +61,24 @@ export default function HeroBanner() {
                             {/* Subtle dark overlay to maintain depth */}
                             <div className="absolute inset-0 bg-black/20" />
                         </div>
+
+                        {/* CTA Button Overlay */}
+                        {bannerCTAs[i] && (
+                            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10">
+                                <a
+                                    href={bannerCTAs[i].link}
+                                    className="group relative px-12 py-4 bg-black/40 backdrop-blur-md border border-[#EAB308] text-white font-semibold text-sm md:text-base tracking-[0.2em] uppercase rounded-full overflow-hidden inline-block transition-colors duration-300 hover:bg-black/60"
+                                >
+                                    {/* Glare/Shimmer Effect */}
+                                    <span className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-all duration-1000 group-hover:left-[100%] z-10"></span>
+
+                                    <span className="relative z-20 flex items-center gap-3">
+                                        {bannerCTAs[i].text}
+                                        <span className="text-[#EAB308]">→</span>
+                                    </span>
+                                </a>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

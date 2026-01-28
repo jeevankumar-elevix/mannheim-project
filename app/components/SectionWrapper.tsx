@@ -31,19 +31,18 @@ export default function SectionWrapper({
     return (
         <section id={id} className={`w-full min-h-screen flex flex-col justify-center items-center py-20 px-4 relative overflow-hidden ${className}`}>
             {bgImage && (
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: `url(${bgImage})`,
-                        backgroundSize: bgSize,
-                        backgroundPosition: bgPosition,
-                        backgroundRepeat: 'no-repeat',
-                        opacity: 0.4
-                    }}
-                />
-            )}
-            {bgImage && (
-                <div className="absolute inset-0 bg-black/20 z-0" />
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src={bgImage}
+                        alt="Section Background"
+                        fill
+                        className="object-cover"
+                        quality={100}
+                        priority
+                        unoptimized={bgImage.includes('?')}
+                    />
+                    <div className="absolute inset-0 bg-black/40 z-10" />
+                </div>
             )}
             <div className="max-w-7xl w-full flex flex-col items-center relative z-10">
                 {!hideTitle && (
@@ -55,6 +54,7 @@ export default function SectionWrapper({
                                 width={800}
                                 height={200}
                                 className={`${titleImageClassName} w-auto object-contain`}
+                                unoptimized
                             />
                         </div>
                     ) : (
