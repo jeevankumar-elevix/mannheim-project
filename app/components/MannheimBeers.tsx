@@ -1,7 +1,58 @@
+'use client';
+
 import SectionWrapper from './SectionWrapper';
 import Image from 'next/image';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function MannheimBeers() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const leftImageRef = useRef<HTMLDivElement>(null);
+    const rightImageRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLDivElement>(null);
+    const textContentRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 75%',
+                once: true,
+            }
+        });
+
+        // Side Images Animation (Converging)
+        tl.from(leftImageRef.current,
+            { x: -100, opacity: 0, duration: 1.2, ease: 'power3.out' },
+            'start'
+        );
+
+        tl.from(rightImageRef.current,
+            { x: 100, opacity: 0, duration: 1.2, ease: 'power3.out' },
+            'start'
+        );
+
+        // Logo Animation (Drop down with slight bounce)
+        tl.from(logoRef.current,
+            { y: -50, opacity: 0, scale: 0.9, duration: 1, ease: 'back.out(1.7)' },
+            'start+=0.3'
+        );
+
+        // Content Stagger
+        const textElements = textContentRef.current?.children;
+        if (textElements) {
+            tl.fromTo(Array.from(textElements),
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out', clearProps: 'all' },
+                '-=0.8'
+            );
+        }
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="mannheim-beers"
@@ -13,9 +64,9 @@ export default function MannheimBeers() {
             bgPosition="center 20%"
             className="px-10 py-[20px]"
         >
-            <div className="max-w-[1400px] mx-auto relative min-h-[600px] flex items-center justify-center">
+            <div ref={containerRef} className="max-w-[1400px] mx-auto relative min-h-[600px] flex items-center justify-center">
                 {/* Left Side Image */}
-                <div className="hidden xl:block absolute left-0 top-1/2 -translate-y-[60%] w-[250px] h-[350px] rounded-none border-4 border-white/20 shadow-2xl overflow-hidden -rotate-2">
+                <div ref={leftImageRef} className="hidden xl:block absolute left-0 top-1/2 -translate-y-[60%] w-[250px] h-[350px] rounded-none border-4 border-white/20 shadow-2xl overflow-hidden -rotate-2">
                     <Image
                         src="/section-images/mannheim-beers/imageleft.jpeg"
                         alt="Mannheim Beer Craft"
@@ -27,7 +78,7 @@ export default function MannheimBeers() {
                 {/* Main Content */}
                 <div className="max-w-[1200px] mx-auto text-center -mt-12 z-10">
                     {/* Logo Container */}
-                    <div className="mb-8">
+                    <div ref={logoRef} className="mb-8">
                         <Image
                             src="/headings/mannheim-beers.png?v=2"
                             alt="Mannheim Beers"
@@ -39,7 +90,7 @@ export default function MannheimBeers() {
                     </div>
 
                     {/* Content Wrapper */}
-                    <div className="max-w-[750px] mx-auto">
+                    <div ref={textContentRef} className="max-w-[750px] mx-auto">
                         <p className="text-lg leading-[1.7] mb-[16px] font-normal text-white/95">
                             At <span className="font-semibold text-white">Mannheim Craft Brewery</span>, brewing isn't just science — it's soul.
                             Every beer begins with intention and ends with connection.
@@ -70,7 +121,7 @@ export default function MannheimBeers() {
                             </p>
                         </div>
 
-                        <button className="mt-2 inline-block px-[40px] py-[10px] text-[14px] tracking-[1.5px] uppercase bg-gradient-to-r from-[#e59510] to-[#d68410] text-white font-bold hover:from-[#d68410] hover:to-[#c77310] transition-all duration-300 rounded-sm shadow-lg hover:shadow-xl hover:scale-105 group">
+                        <button className="relative z-20 mt-8 inline-block px-10 py-3 text-sm tracking-[0.15em] uppercase bg-gradient-to-r from-[#e59510] to-[#b87608] text-white font-bold hover:from-[#d68410] hover:to-[#a66a07] transition-all duration-300 rounded-sm shadow-[0_4px_14px_0_rgba(229,149,16,0.39)] hover:shadow-[0_6px_20px_rgba(229,149,16,0.23)] hover:scale-105 group">
                             KNOW MORE
                             <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
                         </button>
@@ -78,7 +129,7 @@ export default function MannheimBeers() {
                 </div>
 
                 {/* Right Side Image */}
-                <div className="hidden xl:block absolute right-0 top-1/2 -translate-y-[40%] w-[250px] h-[350px] rounded-none border-4 border-white/20 shadow-2xl overflow-hidden rotate-2">
+                <div ref={rightImageRef} className="hidden xl:block absolute right-0 top-1/2 -translate-y-[40%] w-[250px] h-[350px] rounded-none border-4 border-white/20 shadow-2xl overflow-hidden rotate-2">
                     <Image
                         src="/section-images/mannheim-beers/imageright.jpg"
                         alt="Mannheim Beer Experience"

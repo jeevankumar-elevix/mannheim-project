@@ -1,7 +1,52 @@
+'use client';
+
 import SectionWrapper from './SectionWrapper';
 import Image from 'next/image';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function OurStory() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const image1Ref = useRef<HTMLDivElement>(null);
+    const image2Ref = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 80%',
+                once: true,
+            }
+        });
+
+        // Image Animations
+        tl.fromTo(image1Ref.current,
+            { x: -100, opacity: 0, rotate: -10 },
+            { x: 0, opacity: 1, rotate: -2, duration: 1, ease: 'power3.out' }
+        );
+
+        tl.fromTo(image2Ref.current,
+            { x: -100, opacity: 0, rotate: 10 },
+            { x: 0, opacity: 1, rotate: 3, duration: 1, ease: 'power3.out' },
+            '-=0.7'
+        );
+
+        // Content Animations
+        const contentElements = contentRef.current?.children;
+        if (contentElements) {
+            tl.fromTo(Array.from(contentElements),
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out', clearProps: 'all' },
+                '-=0.5'
+            );
+        }
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="our-story"
@@ -11,11 +56,11 @@ export default function OurStory() {
             bgImage="/section-backgrounds/our-story.png?v=1"
             className="px-10"
         >
-            <div className="grid lg:grid-cols-2 gap-[60px] items-center w-full max-w-[1400px] mx-auto">
+            <div ref={containerRef} className="grid lg:grid-cols-2 gap-[60px] items-center w-full max-w-[1400px] mx-auto">
                 {/* Left Side: Overlapping Images */}
                 <div className="relative w-full max-w-[500px] aspect-square mx-auto lg:mx-0">
                     {/* Back Image (Frame 1) */}
-                    <div className="absolute top-0 left-0 w-[70%] aspect-square -rotate-[2deg] border-4 border-white/20 shadow-2xl overflow-hidden rounded-sm z-10">
+                    <div ref={image1Ref} className="absolute top-0 left-0 w-[70%] aspect-square -rotate-[2deg] border-4 border-white/20 shadow-2xl overflow-hidden rounded-sm z-10">
                         <Image
                             src="/section-images/our-story/1.jpg"
                             alt="Mannheim Brewery Interior"
@@ -24,7 +69,7 @@ export default function OurStory() {
                         />
                     </div>
                     {/* Front Image (Frame 2) */}
-                    <div className="absolute bottom-0 right-0 w-[70%] aspect-square rotate-[3deg] border-4 border-white/20 shadow-2xl overflow-hidden rounded-sm z-20">
+                    <div ref={image2Ref} className="absolute bottom-0 right-0 w-[70%] aspect-square rotate-[3deg] border-4 border-white/20 shadow-2xl overflow-hidden rounded-sm z-20">
                         <Image
                             src="/section-images/our-story/2.jpg"
                             alt="Mannheim Brewery Exterior"
@@ -35,7 +80,7 @@ export default function OurStory() {
                 </div>
 
                 {/* Right Side: Content */}
-                <div className="flex flex-col items-start text-left max-w-[600px]">
+                <div ref={contentRef} className="flex flex-col items-start text-left max-w-[600px]">
                     {/* Heading Image Container */}
                     <div className="mb-8">
                         <Image

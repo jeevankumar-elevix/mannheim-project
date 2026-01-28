@@ -7,6 +7,7 @@ import OurOutlets from "./components/OurOutlets";
 import HostParties from "./components/HostParties";
 import ContactUs from "./components/ContactUs";
 import PartnerWithUs from "./components/PartnerWithUs";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <HostParties />
       <ContactUs />
       <PartnerWithUs />
+      <Footer />
     </main>
   );
 }

@@ -2,8 +2,53 @@
 
 import SectionWrapper from './SectionWrapper';
 import Image from 'next/image';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function FindUs() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const leftContentRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLDivElement>(null);
+    const mapRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 75%',
+                once: true,
+            }
+        });
+
+        // Left Content Stagger (Heading, Text, Button)
+        const leftElements = leftContentRef.current?.children;
+        if (leftElements) {
+            tl.fromTo(Array.from(leftElements),
+                { x: -30, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out', clearProps: 'all' }
+            );
+        }
+
+        // Right Side: Logo Drop & Rotate
+        tl.fromTo(logoRef.current,
+            { y: -100, opacity: 0, rotate: -180 },
+            { y: 0, opacity: 1, rotate: 0, duration: 1, ease: 'back.out(1.5)', clearProps: 'all' },
+            '-=0.6'
+        );
+
+        // Map Card 3D Flip Up
+        tl.fromTo(mapRef.current,
+            { y: 100, opacity: 0, rotateX: 20, transformPerspective: 1000 },
+            { y: 0, opacity: 1, rotateX: 0, duration: 1, ease: 'power3.out', clearProps: 'all' },
+            '-=0.8'
+        );
+
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="find-us"
@@ -15,9 +60,9 @@ export default function FindUs() {
             bgPosition="center"
             className="px-10 py-[60px]"
         >
-            <div className="grid lg:grid-cols-2 gap-[60px] items-start w-full max-w-[1400px] mx-auto">
+            <div ref={containerRef} className="grid lg:grid-cols-2 gap-[60px] items-start w-full max-w-[1400px] mx-auto">
                 {/* Left Side: Content */}
-                <div className="flex flex-col items-start text-left max-w-[600px]">
+                <div ref={leftContentRef} className="flex flex-col items-start text-left max-w-[600px]">
                     {/* Heading Image Container */}
                     <div className="mb-10 ml-7">
                         <Image
@@ -73,7 +118,7 @@ export default function FindUs() {
                 {/* Right Side: Tap Map */}
                 <div className="w-full flex flex-col items-center">
                     {/* Place Logo - Circular */}
-                    <div className="mb-6">
+                    <div ref={logoRef} className="mb-6">
                         <div className="w-[120px] h-[120px] rounded-full overflow-hidden border-4 border-white/20 shadow-xl">
                             <Image
                                 src="/logo/mannheim-place-logo-circular.jpg"
@@ -86,7 +131,7 @@ export default function FindUs() {
                     </div>
 
                     {/* Tap Map Card */}
-                    <div className="w-full h-[500px] rounded-2xl bg-gradient-to-br from-[#1e1e1e] via-[#252525] to-[#121212] border border-white/10 shadow-2xl overflow-hidden">
+                    <div ref={mapRef} className="w-full h-[500px] rounded-2xl bg-gradient-to-br from-[#1e1e1e] via-[#252525] to-[#121212] border border-white/10 shadow-2xl overflow-hidden">
                         <div
                             dangerouslySetInnerHTML={{
                                 __html: `<script src="https://cdn.jsdelivr.net/npm/@kegshoe/tap-map" auth="MzI2Mg%3D%3D" crossorigin="anonymous" height="500px" color="#e59510" defer></script>`
