@@ -33,7 +33,7 @@ export default function HostParties() {
                     <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-4 h-[500px] md:h-[600px]">
                         <div className="col-span-1 row-span-2 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
                             <Image
-                                src="/section-images/host-parties/brewery_party_1.png"
+                                src="/section-images/host-your-parties/host-your-party1.jpg"
                                 alt="Brewery Party"
                                 fill
                                 className="object-cover transform transition-transform duration-700 group-hover:scale-110"
@@ -42,7 +42,7 @@ export default function HostParties() {
                         </div>
                         <div className="col-span-1 row-span-1 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
                             <Image
-                                src="/section-images/host-parties/brewery_party_2.png"
+                                src="/section-images/host-your-parties/host-your-party-2.jpg"
                                 alt="Curated Food"
                                 fill
                                 className="object-cover transform transition-transform duration-700 group-hover:scale-110"
@@ -51,7 +51,7 @@ export default function HostParties() {
                         </div>
                         <div className="col-span-1 row-span-1 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
                             <Image
-                                src="/section-images/host-parties/brewery_party_3.png"
+                                src="/section-images/host-your-parties/host-your-party-3.jpg"
                                 alt="Corporate Mixer"
                                 fill
                                 className="object-cover transform transition-transform duration-700 group-hover:scale-110"
