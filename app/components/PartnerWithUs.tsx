@@ -1,6 +1,46 @@
+"use client";
+import { useRef } from 'react';
 import SectionWrapper from './SectionWrapper';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PartnerWithUs() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        tl.from('.partner-intro', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: 'power3.out'
+        })
+            .from('.partner-image-container', {
+                opacity: 0,
+                x: -50,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, "-=0.4")
+            .from('.partner-form-container', {
+                opacity: 0,
+                x: 50,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, "-=0.6");
+
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="partner-with-us"
@@ -14,9 +54,9 @@ export default function PartnerWithUs() {
                 backgroundImage: 'radial-gradient(circle at top left, rgba(80,80,80,0.5), transparent 45%), radial-gradient(circle at bottom right, rgba(80,80,80,0.5), transparent 45%)'
             }}
         >
-            <div className="w-full max-w-7xl mx-auto px-4 md:px-0">
+            <div ref={containerRef} className="w-full max-w-7xl mx-auto px-4 md:px-0">
                 {/* Intro Content */}
-                <div className="max-w-4xl mx-auto text-center mb-16 space-y-6">
+                <div className="partner-intro max-w-4xl mx-auto text-center mb-16 space-y-6">
                     <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
                         Whether you’re curating a tap list for your restaurant or planning an event that deserves something special, we’re here to collaborate. Partner with Mannheim Craft Brewery and pour authenticity, quality, and craft into every experience.
                     </p>
@@ -29,7 +69,7 @@ export default function PartnerWithUs() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
 
                     {/* Left Side: Image Card with Hover Reveal */}
-                    <div className="flex flex-col">
+                    <div className="partner-image-container flex flex-col">
                         <div className="relative group overflow-hidden rounded-3xl bg-white/5 border border-white/10 h-[580px] max-h-[580px]">
                             <img
                                 src="/section-images/partner-with-us/grow-together.jpg"
@@ -57,7 +97,7 @@ export default function PartnerWithUs() {
                     </div>
 
                     {/* Right Side: Partner Form */}
-                    <div className="w-full">
+                    <div className="partner-form-container w-full">
                         <form className="space-y-6 bg-white/5 p-8 md:p-10 rounded-3xl border border-white/10 backdrop-blur-md">
 
                             <div className="space-y-2">

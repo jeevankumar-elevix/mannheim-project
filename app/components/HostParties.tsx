@@ -1,8 +1,49 @@
+"use client";
+import { useRef } from 'react';
 import SectionWrapper from './SectionWrapper';
 import Image from 'next/image';
 import { Phone } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HostParties() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        tl.from('.host-title', {
+            opacity: 0,
+            y: -30,
+            duration: 0.8,
+            ease: 'power3.out'
+        })
+            .from('.bento-item', {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'back.out(1.7)'
+            }, "-=0.4")
+            .from('.host-content', {
+                opacity: 0,
+                x: 50,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, "-=0.6");
+
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="host-parties"
@@ -13,10 +54,10 @@ export default function HostParties() {
             overlayOpacity="bg-black/85"
             className="pt-12 pb-24 min-h-0"
         >
-            <div className="w-full max-w-7xl mx-auto px-4 md:px-0 flex flex-col gap-12">
+            <div ref={containerRef} className="w-full max-w-7xl mx-auto px-4 md:px-0 flex flex-col gap-12">
 
                 {/* Header Image */}
-                <div className="flex justify-center">
+                <div className="host-title flex justify-center">
                     <Image
                         src="/headings/host-your-parties.png"
                         alt="Host Your Parties"
@@ -32,7 +73,7 @@ export default function HostParties() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     {/* Bento Grid Left */}
                     <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-4 h-[500px] md:h-[600px]">
-                        <div className="col-span-1 row-span-2 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
+                        <div className="bento-item col-span-1 row-span-2 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
                             <Image
                                 src="/section-images/host-your-parties/host-your-party1.jpg"
                                 alt="Brewery Party"
@@ -42,7 +83,7 @@ export default function HostParties() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
-                        <div className="col-span-1 row-span-1 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
+                        <div className="bento-item col-span-1 row-span-1 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
                             <Image
                                 src="/section-images/host-your-parties/host-your-party-2.jpg"
                                 alt="Curated Food"
@@ -52,7 +93,7 @@ export default function HostParties() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
-                        <div className="col-span-1 row-span-1 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
+                        <div className="bento-item col-span-1 row-span-1 relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl group">
                             <Image
                                 src="/section-images/host-your-parties/host-your-party-3.jpg"
                                 alt="Corporate Mixer"
@@ -65,7 +106,7 @@ export default function HostParties() {
                     </div>
 
                     {/* Content Right */}
-                    <div className="lg:col-span-5 flex flex-col gap-8">
+                    <div className="host-content lg:col-span-5 flex flex-col gap-8">
                         <div className="space-y-6">
                             <p className="text-gray-300 text-lg leading-relaxed font-light text-justify">
                                 Make your next celebration <span className="text-white font-medium">effortless and unforgettable</span> at Mannheim Craft Brewery.

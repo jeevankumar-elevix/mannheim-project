@@ -1,7 +1,41 @@
+"use client";
+import { useRef } from 'react';
 import SectionWrapper from './SectionWrapper';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactUs() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        tl.from('.contact-form-container', {
+            opacity: 0,
+            x: -50,
+            duration: 0.8,
+            ease: 'power3.out'
+        })
+            .from('.contact-info-container', {
+                opacity: 0,
+                x: 50,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, "-=0.6");
+
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="contact-us"
@@ -15,11 +49,11 @@ export default function ContactUs() {
                 backgroundImage: 'radial-gradient(circle at top right, rgba(80,80,80,0.5), transparent 40%), radial-gradient(circle at bottom left, rgba(80,80,80,0.5), transparent 40%)'
             }}
         >
-            <div className="w-full max-w-7xl mx-auto px-4 md:px-0">
+            <div ref={containerRef} className="w-full max-w-7xl mx-auto px-4 md:px-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-stretch mt-4">
 
                     {/* Left Side: Contact Form (White styling) */}
-                    <div className="w-full">
+                    <div className="contact-form-container w-full">
                         <div className="mb-8">
                             <h3 className="text-3xl font-display font-bold text-white mb-4">Get in Touch</h3>
                             <p className="text-gray-400 font-light">Have a question or feedback? We'd love to hear from you.</p>
@@ -77,7 +111,7 @@ export default function ContactUs() {
                     </div>
 
                     {/* Right Side: Contact Info & Image Card */}
-                    <div className="flex flex-col h-full space-y-6 lg:pt-0">
+                    <div className="contact-info-container flex flex-col h-full space-y-6 lg:pt-0">
                         {/* Image Card Placeholder */}
                         <div className="relative group overflow-hidden rounded-3xl bg-white/5 border border-white/10 aspect-[16/9] lg:aspect-auto lg:flex-1 min-h-[250px] max-h-[340px]">
                             <img

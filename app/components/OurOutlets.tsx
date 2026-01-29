@@ -1,12 +1,93 @@
+"use client";
+import { useRef } from 'react';
 import SectionWrapper from './SectionWrapper';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function OurOutlets() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        // Title Animation
+        tl.from('.outlet-title', {
+            opacity: 0,
+            y: -30,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Whitefield Section
+        gsap.from('.whitefield-image', {
+            scrollTrigger: {
+                trigger: '.whitefield-section',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            x: -50,
+            duration: 1,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.whitefield-content', {
+            scrollTrigger: {
+                trigger: '.whitefield-section',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            x: 50,
+            duration: 1,
+            delay: 0.2,
+            ease: 'power3.out'
+        });
+
+        // Ecoworld Section
+        gsap.from('.ecoworld-image', {
+            scrollTrigger: {
+                trigger: '.ecoworld-section',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            x: 50,
+            duration: 1,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.ecoworld-content', {
+            scrollTrigger: {
+                trigger: '.ecoworld-section',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            x: -50,
+            duration: 1,
+            delay: 0.2,
+            ease: 'power3.out'
+        });
+
+    }, { scope: containerRef });
+
     return (
         <SectionWrapper
             id="our-outlets"
             title="Our Outlets"
-            hideTitle={true} // Hide default title to custom place it
+            hideTitle={true}
             noCard={true}
             bgImage="/section-backgrounds/our-outlets-background.png"
             bgSize="cover"
@@ -14,12 +95,12 @@ export default function OurOutlets() {
             overlayOpacity="bg-black/85"
             className="pb-0 min-h-0"
         >
-            <div className="w-full max-w-6xl mx-auto flex flex-col gap-24 px-4 md:px-0">
+            <div ref={containerRef} className="w-full max-w-6xl mx-auto flex flex-col gap-24 px-4 md:px-0">
 
                 {/* Whitefield Section - Image Left, Content Right */}
-                <div className="flex flex-col md:flex-row items-start gap-12 group">
+                <div className="whitefield-section flex flex-col md:flex-row items-start gap-12 group">
                     {/* Image Side */}
-                    <div className="w-full md:w-1/3 relative pt-4 flex flex-col gap-6">
+                    <div className="whitefield-image w-full md:w-1/3 relative pt-4 flex flex-col gap-6">
                         <div className="flex flex-col items-center px-6 py-4 border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-xl">
                             <h3 className="text-white font-display text-2xl tracking-widest uppercase font-bold">Whitefield</h3>
                         </div>
@@ -38,9 +119,9 @@ export default function OurOutlets() {
                     </div>
 
                     {/* Content Side */}
-                    <div className="w-full md:w-2/3 flex flex-col items-end text-right space-y-8">
+                    <div className="whitefield-content w-full md:w-2/3 flex flex-col items-end text-right space-y-8">
                         {/* Custom Title Placement */}
-                        <div className="mb-4 self-center">
+                        <div className="outlet-title mb-4 self-center">
                             <Image
                                 src="/headings/our-outlets.png"
                                 alt="Our Outlets"
@@ -70,9 +151,9 @@ export default function OurOutlets() {
                 </div>
 
                 {/* Ecoworld Bay Section - Content Left, Image Right */}
-                <div className="flex flex-col md:flex-row-reverse items-start gap-12 group">
+                <div className="ecoworld-section flex flex-col md:flex-row-reverse items-start gap-12 group">
                     {/* Image Side */}
-                    <div className="w-full md:w-1/3 relative flex flex-col gap-6 -mt-20">
+                    <div className="ecoworld-image w-full md:w-1/3 relative flex flex-col gap-6 -mt-20">
                         <div className="flex flex-col items-center px-6 py-4 border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-xl">
                             <h3 className="text-white font-display text-2xl tracking-widest uppercase font-bold">Ecoworld Bay</h3>
                         </div>
@@ -91,7 +172,7 @@ export default function OurOutlets() {
                     </div>
 
                     {/* Content Side */}
-                    <div className="w-full md:w-2/3 flex flex-col space-y-8 text-left pt-12">
+                    <div className="ecoworld-content w-full md:w-2/3 flex flex-col space-y-8 text-left pt-12">
                         <div className="space-y-4">
                             <p className="text-gray-300 leading-relaxed text-lg font-light text-justify">
                                 Designed for everyone — from families and friends to music lovers, coffee enthusiasts, and even your pets — our <span className="text-white font-medium">pet-friendly taprooms</span> are where good beer meets good company.
