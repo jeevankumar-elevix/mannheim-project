@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Outfit } from "next/font/google";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
@@ -7,6 +7,12 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   weight: ["400", "700"],
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${montserrat.variable} font-sans antialiased bg-[#121212] text-gray-100`}
+        className={`${montserrat.variable} ${outfit.variable} font-sans antialiased bg-[#121212] text-gray-100`}
       >
         <Navbar />
         {children}

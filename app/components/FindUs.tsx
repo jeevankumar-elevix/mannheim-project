@@ -55,9 +55,10 @@ export default function FindUs() {
             title="Find Mannheim Craft Beers"
             hideTitle={true}
             noCard={true}
-            bgImage="/section-backgrounds/find-us.png"
+            bgImage="/section-backgrounds/find-us.png?v=2"
             bgSize="cover"
             bgPosition="center"
+            overlayOpacity="bg-black/80"
             className="px-10 py-[60px]"
         >
             <div ref={containerRef} className="grid lg:grid-cols-2 gap-[60px] items-start w-full max-w-[1400px] mx-auto">

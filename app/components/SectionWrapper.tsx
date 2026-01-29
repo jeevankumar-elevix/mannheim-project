@@ -11,6 +11,7 @@ interface SectionWrapperProps {
     bgImage?: string;
     bgSize?: 'cover' | 'contain' | string;
     bgPosition?: string;
+    overlayOpacity?: string;
     children?: React.ReactNode;
     className?: string;
 }
@@ -25,6 +26,7 @@ export default function SectionWrapper({
     bgImage,
     bgSize = 'cover',
     bgPosition = 'center',
+    overlayOpacity = "bg-black/40",
     children,
     className = ""
 }: SectionWrapperProps) {
@@ -41,7 +43,7 @@ export default function SectionWrapper({
                         priority
                         unoptimized={bgImage.includes('?')}
                     />
-                    <div className="absolute inset-0 bg-black/40 z-10" />
+                    <div className={`absolute inset-0 ${overlayOpacity} z-10`} />
                 </div>
             )}
             <div className="max-w-7xl w-full flex flex-col items-center relative z-10">
