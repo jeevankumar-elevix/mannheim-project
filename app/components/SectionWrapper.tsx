@@ -14,6 +14,7 @@ interface SectionWrapperProps {
     overlayOpacity?: string;
     children?: React.ReactNode;
     className?: string;
+    style?: React.CSSProperties;
 }
 
 export default function SectionWrapper({
@@ -28,17 +29,23 @@ export default function SectionWrapper({
     bgPosition = 'center',
     overlayOpacity = "bg-black/40",
     children,
-    className = ""
+    className = "",
+    style = {}
 }: SectionWrapperProps) {
     return (
-        <section id={id} className={`w-full min-h-screen flex flex-col justify-center items-center py-20 px-4 relative overflow-hidden ${className}`}>
+        <section
+            id={id}
+            className={`w-full min-h-screen flex flex-col justify-center items-center py-20 px-4 relative overflow-hidden ${className}`}
+            style={style}
+        >
             {bgImage && (
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={bgImage}
                         alt="Section Background"
                         fill
-                        className="object-cover"
+                        className="transition-opacity duration-500"
+                        style={{ objectFit: bgSize as any, objectPosition: bgPosition }}
                         quality={100}
                         priority
                         unoptimized={bgImage.includes('?')}

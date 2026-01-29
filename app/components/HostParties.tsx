@@ -24,6 +24,7 @@ export default function HostParties() {
                         height={160}
                         className="h-24 md:h-32 lg:h-20 w-auto object-contain"
                         unoptimized
+                        key={Date.now()}
                     />
                 </div>
 
@@ -37,6 +38,7 @@ export default function HostParties() {
                                 alt="Brewery Party"
                                 fill
                                 className="object-cover transform transition-transform duration-700 group-hover:scale-110"
+                                unoptimized
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
@@ -46,6 +48,7 @@ export default function HostParties() {
                                 alt="Curated Food"
                                 fill
                                 className="object-cover transform transition-transform duration-700 group-hover:scale-110"
+                                unoptimized
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
@@ -55,6 +58,7 @@ export default function HostParties() {
                                 alt="Corporate Mixer"
                                 fill
                                 className="object-cover transform transition-transform duration-700 group-hover:scale-110"
+                                unoptimized
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
