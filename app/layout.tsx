@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Outfit } from "next/font/google";
 import Navbar from "./components/Navbar";
+import SmoothScroll from "./components/SmoothScroll";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -31,7 +32,9 @@ export default function RootLayout({
         className={`${montserrat.variable} ${outfit.variable} font-sans antialiased bg-[#121212] text-gray-100`}
       >
         <Navbar />
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

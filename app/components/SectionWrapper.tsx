@@ -79,7 +79,7 @@ export default function SectionWrapper({
                     </div>
                 ) : (
                     <div className="w-full min-h-[500px] h-auto p-8 md:p-12 rounded-3xl bg-gradient-to-br from-[#1e1e1e] via-[#252525] to-[#121212] border border-white/5 shadow-2xl flex flex-col items-center justify-center relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-orange-500/10 opacity-50" />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 via-transparent to-orange-500/5 opacity-50" />
                         {children || <span className="text-gray-500 text-lg font-light tracking-widest">CONTENT COMING SOON</span>}
                     </div>
                 )}

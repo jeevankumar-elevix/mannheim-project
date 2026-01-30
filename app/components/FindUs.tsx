@@ -132,7 +132,7 @@ export default function FindUs() {
                     </div>
 
                     {/* Tap Map Card */}
-                    <div ref={mapRef} className="w-full h-[500px] rounded-2xl bg-gradient-to-br from-[#1e1e1e] via-[#252525] to-[#121212] border border-white/10 shadow-2xl overflow-hidden">
+                    <div ref={mapRef} className="w-full h-[500px] rounded-2xl bg-gradient-to-br from-[#1e1e1e] via-[#252525] to-[#121212] border border-white/10 shadow-2xl overflow-hidden" data-lenis-prevent>
                         <div
                             dangerouslySetInnerHTML={{
                                 __html: `<script src="https://cdn.jsdelivr.net/npm/@kegshoe/tap-map" auth="MzI2Mg%3D%3D" crossorigin="anonymous" height="500px" color="#e59510" defer></script>`

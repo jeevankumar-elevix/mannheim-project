@@ -17,7 +17,7 @@ export default function OurOutlets() {
                 trigger: containerRef.current,
                 start: 'top 80%',
                 end: 'bottom 20%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             }
         });
 
@@ -34,7 +34,7 @@ export default function OurOutlets() {
             scrollTrigger: {
                 trigger: '.whitefield-section',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 0,
             x: -50,
@@ -46,7 +46,7 @@ export default function OurOutlets() {
             scrollTrigger: {
                 trigger: '.whitefield-section',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 0,
             x: 50,
@@ -60,7 +60,7 @@ export default function OurOutlets() {
             scrollTrigger: {
                 trigger: '.ecoworld-section',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 0,
             x: 50,
@@ -72,7 +72,7 @@ export default function OurOutlets() {
             scrollTrigger: {
                 trigger: '.ecoworld-section',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 0,
             x: -50,
@@ -93,7 +93,7 @@ export default function OurOutlets() {
             bgSize="cover"
             bgPosition="center"
             overlayOpacity="bg-black/85"
-            className="pb-0 min-h-0"
+            className="pb-20 min-h-0"
         >
             <div ref={containerRef} className="w-full max-w-6xl mx-auto flex flex-col gap-24 px-4 md:px-0">
 
@@ -104,7 +104,7 @@ export default function OurOutlets() {
                         <div className="flex flex-col items-center px-6 py-4 border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-xl">
                             <h3 className="text-white font-display text-2xl tracking-widest uppercase font-bold">Whitefield</h3>
                         </div>
-                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform transition-transform duration-700 group-hover:scale-[1.02]">
+                        <div className="relative z-10 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform transition-transform duration-700 group-hover:scale-[1.02]">
                             <Image
                                 src="/section-images/our-outlets/mannheim-whitefield.jpg"
                                 alt="Mannheim Whitefield"
@@ -114,8 +114,7 @@ export default function OurOutlets() {
                             {/* Overlay Gradient */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
                         </div>
-                        {/* Decorative Element */}
-                        <div className="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-orange-500/30 rounded-bl-3xl -z-10" />
+                        <div className="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-orange-500/60 rounded-bl-3xl z-0" />
                     </div>
 
                     {/* Content Side */}
@@ -157,7 +156,7 @@ export default function OurOutlets() {
                         <div className="flex flex-col items-center px-6 py-4 border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-xl">
                             <h3 className="text-white font-display text-2xl tracking-widest uppercase font-bold">Ecoworld Bay</h3>
                         </div>
-                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform transition-transform duration-700 group-hover:scale-[1.02]">
+                        <div className="relative z-10 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform transition-transform duration-700 group-hover:scale-[1.02]">
                             <Image
                                 src="/section-images/our-outlets/mannheim-eco-world.jpg"
                                 alt="Mannheim Ecoworld Bay"
@@ -167,8 +166,7 @@ export default function OurOutlets() {
                             {/* Overlay Gradient */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
                         </div>
-                        {/* Decorative Element */}
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r-2 border-b-2 border-purple-500/30 rounded-br-3xl -z-10" />
+                        <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r-2 border-b-2 border-orange-500/60 rounded-br-3xl z-0" />
                     </div>
 
                     {/* Content Side */}
@@ -182,8 +180,8 @@ export default function OurOutlets() {
                             </p>
                         </div>
 
-                        {/* Know More Button - Aligned to the right of the content column (nearby the image) */}
-                        <button className="relative z-20 self-end px-10 py-3 text-sm tracking-[0.15em] uppercase bg-gradient-to-r from-[#e59510] to-[#b87608] text-white font-bold hover:from-[#d68410] hover:to-[#a66a07] transition-all duration-300 rounded-sm shadow-[0_4px_14px_0_rgba(229,149,16,0.39)] hover:shadow-[0_6px_20px_rgba(229,149,16,0.23)] hover:scale-105 group/btn">
+                        {/* Know More Button - Aligned to the left */}
+                        <button className="relative z-20 self-start px-10 py-3 text-sm tracking-[0.15em] uppercase bg-gradient-to-r from-[#e59510] to-[#b87608] text-white font-bold hover:from-[#d68410] hover:to-[#a66a07] transition-all duration-300 rounded-sm shadow-[0_4px_14px_0_rgba(229,149,16,0.39)] hover:shadow-[0_6px_20px_rgba(229,149,16,0.23)] hover:scale-105 group/btn">
                             KNOW MORE
                             <span className="inline-block ml-2 group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
                         </button>

@@ -16,7 +16,7 @@ export default function PartnerWithUs() {
                 trigger: containerRef.current,
                 start: 'top 80%',
                 end: 'bottom 20%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             }
         });
 
@@ -49,10 +49,9 @@ export default function PartnerWithUs() {
             titleImageClassName="h-16 md:h-20 lg:h-22"
             hideTitle={false}
             noCard={true}
-            className="py-24 bg-black"
-            style={{
-                backgroundImage: 'radial-gradient(circle at top left, rgba(80,80,80,0.5), transparent 45%), radial-gradient(circle at bottom right, rgba(80,80,80,0.5), transparent 45%)'
-            }}
+            bgImage="/section-backgrounds/partner-with-us.png"
+            overlayOpacity="bg-black/90"
+            className="py-24"
         >
             <div ref={containerRef} className="w-full max-w-7xl mx-auto px-4 md:px-0">
                 {/* Intro Content */}
